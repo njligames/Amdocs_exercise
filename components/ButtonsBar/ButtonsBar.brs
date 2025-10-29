@@ -194,7 +194,9 @@ function setControl() as void
     if control = Commands().resume and LCase(m.top.state) = "playing"
         control = Commands().pause
     end if
-    m.top.control = control
+    if LCase(m.top.state) <> "loading" and LCase(m.top.state) <> "buffering"
+        m.top.control = control
+    end if
 end function
 
 function onCurrentPlayStateChanged(_) as void

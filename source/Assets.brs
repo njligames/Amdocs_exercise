@@ -2,6 +2,17 @@ function Assets() as object
     _assets = [
         {
             asset: {
+                manifest: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                transport: "mp4"
+            },
+            metadata: {
+                assetTitle: "Big Buck Bunny",
+                text: "Big Buck Bunny",
+                categories: ["NoDRM"]
+            }
+        },
+        {
+            asset: {
                 manifest: "http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8",
                 transport: "Hls"
             },
@@ -19,6 +30,28 @@ function Assets() as object
             metadata: {
                 assetTitle: "Folgers",
                 text: "Folgers",
+                categories: ["NoDRM"]
+            }
+        },
+        {
+            asset: {
+                manifest: "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
+                transport: "Hls"
+            },
+            metadata: {
+                assetTitle: "Bip Bop",
+                text: "Bip Bop",
+                categories: ["NoDRM"]
+            }
+        },
+        {
+            asset: {
+                manifest: "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
+                transport: "Hls"
+            },
+            metadata: {
+                assetTitle: "Tears of Steel",
+                text: "Tears of Steel",
                 categories: ["NoDRM"]
             }
         }
