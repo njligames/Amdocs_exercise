@@ -77,7 +77,7 @@ function PlayerPage() as object
                     m.session.seek(_event.data)
                 end if
                 if _event.field = "toggleSessionConfig"
-                    m.loggingView.visible = not _event.data
+                    m.loggingView.visible = _event.data
                 end if
                 if _event.field = "toggleSessionInfo"
                     lines = [

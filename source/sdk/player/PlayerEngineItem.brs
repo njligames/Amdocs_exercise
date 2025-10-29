@@ -105,7 +105,7 @@ function AmdocsSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer a
         _createVideoContent: function() as object
             videoContent = createObject("RoSGNode", "ContentNode")
             videoContent.url = m.sessionItem.asset.manifest
-            videoContent.streamFormat = "Hls"
+            videoContent.streamFormat = m.sessionItem.asset.transport
             return videoContent
         end function
 

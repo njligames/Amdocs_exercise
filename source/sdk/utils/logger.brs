@@ -109,7 +109,7 @@ function readConfigFile(filePath as string) as object
             disableLogging: AmdocsSDK_UtilsStringUtils().stringToBoolean(config?.disableLogging)
             logLevel: config?.logLevel
             name: config?.name
-            disableLoggingToScreen: false
+            disableLoggingToScreen: true
         }
     }
 end function
