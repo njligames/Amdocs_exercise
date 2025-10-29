@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="PlayerPageView" extends="Group"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+    <script type="text/brightscript" uri="pkg:/components/PlayerPageView/PlayerPageView.brs" />
+    <interface>
+        <function name="processMessage" />
+        <field id="setControl" type="string" alwaysNotify="true" />
+        <field id="backPressed" type="bool" />
+    </interface>
+
+    <children>
+        <CommonPlayer id="commonPlayer" color="#00000000" />
+        <ButtonsBar id="buttonsBar" />
+        <LoggingView id="loggingView" />
+    </children>
+</component>
