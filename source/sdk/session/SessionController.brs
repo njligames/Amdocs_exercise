@@ -1,11 +1,11 @@
-function SkySDK_Session_SessionController(sessionItem as object) as object
+function AmdocsSDK_Session_SessionController(sessionItem as object) as object
     this = {
         sessionItem: sessionItem
         currentPlayerItem: invalid
 
-        stateObservable: SkySDK_Utils_Observable()
-        seekObservable: SkySDK_Utils_Observable()
-        positionObservable: SkySDK_Utils_Observable()
+        stateObservable: AmdocsSDK_Utils_Observable()
+        seekObservable: AmdocsSDK_Utils_Observable()
+        positionObservable: AmdocsSDK_Utils_Observable()
 
         '|----------------------------------------------|
         '|              Public Methods                  |
@@ -13,8 +13,8 @@ function SkySDK_Session_SessionController(sessionItem as object) as object
 
         start: function(commonPlayer as object) as void
             m._setState("Loading")
-            m.currentPlayerItem = SkySDK_Player_PlayerEngineItem(m.sessionItem, commonPlayer)
-            skySDK().onMessage("processMessage", m)
+            m.currentPlayerItem = AmdocsSDK_Player_PlayerEngineItem(m.sessionItem, commonPlayer)
+            amdocsSDK().onMessage("processMessage", m)
             m.currentPlayerItem.onStateChanged("_handlePlayerStateChange", m)
             m.currentPlayerItem.onSeekChanged("_handlePlayerSeekChange", m)
             m.currentPlayerItem.onPositionChanged("_handlePlayerPositionChange", m)
@@ -41,7 +41,7 @@ function SkySDK_Session_SessionController(sessionItem as object) as object
         end function
 
         destroy: function() as void
-            skySDK().removeEventListeners(m)
+            amdocsSDK().removeEventListeners(m)
             m.stateObservable.unRegisterAllObserver()
             m.seekObservable.unRegisterAllObserver()
             m.positionObservable.unRegisterAllObserver()

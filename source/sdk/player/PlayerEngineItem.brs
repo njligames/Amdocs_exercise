@@ -1,18 +1,18 @@
-function SkySDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as object) as object
+function AmdocsSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as object) as object
     this = {
         sessionItem: sessionItem
         commonPlayer: commonPlayer
         video: invalid
-        logger: skySDK().logger
+        logger: amdocsSDK().logger
 
         OBSERVABLE_FIELDS: {
             State: "state",
             Position: "position"
         }
 
-        stateObservable: SkySDK_Utils_Observable()
-        seekObservable: SkySDK_Utils_Observable()
-        positionObservable: SkySDK_Utils_Observable()
+        stateObservable: AmdocsSDK_Utils_Observable()
+        seekObservable: AmdocsSDK_Utils_Observable()
+        positionObservable: AmdocsSDK_Utils_Observable()
 
         '|----------------------------------------------|
         '|       Main Tread message                     |
@@ -22,7 +22,7 @@ function SkySDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as o
             if _event <> invalid
 
                 if _event.field = "state"
-                    m.logger.trace(SkySDK_UtilsStringUtils().substitute("PlayerEngineItem.processMessage field={0} data={1} title={2}", _event.field, _event.data, m.sessionItem.metadata.assetTitle))
+                    m.logger.trace(AmdocsSDK_UtilsStringUtils().substitute("PlayerEngineItem.processMessage field={0} data={1} title={2}", _event.field, _event.data, m.sessionItem.metadata.assetTitle))
                     m.stateObservable.notifyObservers(_event.data)
                 end if
 
@@ -34,7 +34,7 @@ function SkySDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as o
                     m.positionObservable.notifyObservers(_event.data)
                 end if
             else
-                m.logger.error(SkySDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerEngineItem.processMessage", SkySDK_UtilsStringUtils().toString(_event)))
+                m.logger.error(AmdocsSDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerEngineItem.processMessage", AmdocsSDK_UtilsStringUtils().toString(_event)))
             end if
         end function
 
@@ -80,9 +80,8 @@ function SkySDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as o
         end function
 
         destroy: function() as void
-            ' stop
             m.stop()
-            skySDK().removeEventListeners(m)
+            amdocsSDK().removeEventListeners(m)
             m.video.unObserveFieldScoped(m.OBSERVABLE_FIELDS.State)
             m.video.unObserveFieldScoped(m.OBSERVABLE_FIELDS.Position)
             m.stateObservable.unRegisterAllObserver()
@@ -116,10 +115,10 @@ function SkySDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as o
 
         _init: function() as void
             m.video = m._createVideoElement()
-            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.State, skySDK().port)
-            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.Position, skySDK().port)
+            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.State, amdocsSDK().port)
+            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.Position, amdocsSDK().port)
             m.commonPlayer.appendChild(m.video)
-            ' m.play()
+            m.play()
         end function
     }
 

@@ -2,11 +2,11 @@
     "license": "ISC",
     "version": "1.7.0",
     "repository": {
-        "url": "git+https://github.com/sky-uk/core-video-sdk-roku_challenge.git",
+        "url": "git+https://github.com/njligames/Amdocs_exercise.git",
         "type": "git"
     },
-    "author": "Core Video",
-    "name": "core-video-sdk-roku_challenge",
+    "author": "James Folk",
+    "name": "Amdocs_exercise",
     "devDependencies": {
         "@rokucommunity/bslint": "^0.1.0",
         "bestzip": "^2.1.7",
@@ -39,7 +39,7 @@
         "lint": "bsc"
     },
     "keywords": [],
-    "main": "source/SkySDK.brs",
+    "main": "source/sdk/AmdocsSDK.brs",
     "homepage": "",
-    "description": "Core Video SDK Roku Challenge"
+    "description": "Amdocs Roku Challenge"
 }

@@ -1,14 +1,14 @@
-function SkySDK_Player_PlayerController() as object
+function AmdocsSDK_Player_PlayerController() as object
     this = {
         currentSession: invalid
-        sessionCreatedObservable: SkySDK_Utils_Observable()
+        sessionCreatedObservable: AmdocsSDK_Utils_Observable()
 
         '|----------------------------------------------|
         '|              Public Methods                  |
         '|----------------------------------------------|
 
         createSession: function(sessionItem, commonPlayer) as void
-            m.currentSession = SkySDK_Session_SessionController(sessionItem)
+            m.currentSession = AmdocsSDK_Session_SessionController(sessionItem)
             m.sessionCreatedObservable.notifyObservers(m.currentSession)
             m.currentSession.start(commonPlayer)
         end function

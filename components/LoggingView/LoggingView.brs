@@ -7,7 +7,7 @@ function Init() as void
 end function
 
 function onMessageChanged(event) as void
-    messageText = SkySDK_UtilsStringUtils().join([event.getData(), Chr(10), m.scrollableText.text])
+    messageText = AmdocsSDK_UtilsStringUtils().join([event.getData(), Chr(10), m.scrollableText.text])
 
     m.scrollableText.text = messageText
 end function

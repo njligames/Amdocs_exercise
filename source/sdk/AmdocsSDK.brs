@@ -1,15 +1,15 @@
-function SkySDKWait(timeout as integer) as dynamic
-    return skySDK()._wait(timeout)
+function AmdocsSDKWait(timeout as integer) as dynamic
+    return amdocsSDK()._wait(timeout)
 end function
 
-function skySDK() as object
+function amdocsSDK() as object
 
     globalAA = getGLobalAA()
-    if globalAA.SkySDKInstance <> invalid then return globalAA.SkySDKInstance
+    if globalAA.AmdocsSDKInstance <> invalid then return globalAA.AmdocsSDKInstance
 
-    SkySDKInstance = {
+    AmdocsSDKInstance = {
         port: invalid
-        messageObservable: SkySDK_Utils_Observable()
+        messageObservable: AmdocsSDK_Utils_Observable()
         initialisePromise: invalid
         logger: invalid
 
@@ -18,7 +18,7 @@ function skySDK() as object
         '|----------------------------------------------|
 
         getPlayerController: function() as object
-            return SkySDK_Player_PlayerController()
+            return AmdocsSDK_Player_PlayerController()
         end function
 
         onMessage: function(callBack as string, callbackOwner as object) as void
@@ -43,7 +43,7 @@ function skySDK() as object
 
         _processMessage: function(msg as dynamic) as void
             if msg = invalid
-                m.logger.error(SkySDK_UtilsStringUtils().substitute("{0} message = {1}", "SkySDK._processMessage", SkySDK_UtilsStringUtils().toString(msg)))
+                m.logger.error(AmdocsSDK_UtilsStringUtils().substitute("{0} message = {1}", "AmdocsSDK._processMessage", AmdocsSDK_UtilsStringUtils().toString(msg)))
                 return
             end if
             _event = { field: msg.getField(), data: msg.getData() }
@@ -61,6 +61,6 @@ function skySDK() as object
         end function
     }
 
-    globalAA.SkySDKInstance = SkySDKInstance
-    return SkySDKInstance
+    globalAA.AmdocsSDKInstance = AmdocsSDKInstance
+    return AmdocsSDKInstance
 end function

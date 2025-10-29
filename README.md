@@ -1,15 +1,4 @@
-## Core Video SDK Roku coding challenge.
-
-What is required?
-
-1. Add different artwork to assets in Assets.brs. 
-2. Extend the player API with **PAUSE** / **RESUME** / **FAST FORWARD**/ **REWIND** / **BACK** functionality. 
-   - **FAST FORWARD** / **REWIND** should add/subtract 10 seconds to the current position.
-   - **BACK** should exit the player.
-3. Create a logger with configurable output: log to console by default, log to the screen via extension. 
-   - log video state changes.
-   - log errors.
-4. Unit Test new functionality. 
+## Amdocs Roku coding challenge.
 
 How to get started.
 
@@ -33,19 +22,20 @@ You can modify the parameters in the following block:
 
 ```json
 {
-    "disableLogging": false,
-    "logLevel": 5,
-    "name": "Default"
+  "disableLogging": false,
+  "logLevel": 5,
+  "name": "Default"
 }
 ```
 
-Parameter description: 
+Parameter description:
+
 - `disableLogging`
-  Enable or disable debugging logs.  
+  Enable or disable debugging logs.
 - `logLevel`
-  There are 6 levels; 5 (TRACE) is the most verbose.  
+  There are 6 levels; 5 (TRACE) is the most verbose.
 - `name`
-  The name of this logger.  
+  The name of this logger.
 
 **Using the Channel:**
 

@@ -1,4 +1,4 @@
-function SkySDK_Utils_Observer(callback as Dynamic, callbackOwner as Object) as Object
+function AmdocsSDK_Utils_Observer(callback as Dynamic, callbackOwner as Object) as Object
     return {
         callback: callback
         callbackOwner: callbackOwner

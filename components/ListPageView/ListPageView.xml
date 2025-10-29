@@ -17,8 +17,8 @@
             <Label id="selectedText" width="600" font="font:SmallestSystemFont" wrap="true" />
         </LayoutGroup>
         <Poster id="assetImage" loadDisplayMode="limitSize" loadWidth="600" loadHeight="290" height="290" translation="[640, 40]" />
-        <LayoutGroup translation="[1150, 10]" itemSpacings="[25]" layoutDirection="horiz">
-            <Poster uri="pkg:/images/sky-logo-transparent.png" />
+        <LayoutGroup translation="[1113, 10]" itemSpacings="[25]" layoutDirection="horiz">
+            <Poster uri="pkg:/images/amdocs-logo-transparent.png" />
         </LayoutGroup>
         <Rectangle color="#000000" width="1280" height="420" translation="[0, 330]" />
         <RowList id="rowList" translation="[30, 300]"/>

@@ -7,10 +7,10 @@ sub Main()
 
     screen.setMessagePort(m.port)
 
-    skySDK().setMessagePort(m.port)
+    amdocsSDK().setMessagePort(m.port)
     params = readConfigFile("pkg:/source/config/config.json")
-    skySDK().initLogger(createLoggerOptionsFromParams(params))
-    m.logger = skySDK().logger
+    amdocsSDK().initLogger(createLoggerOptionsFromParams(params))
+    m.logger = amdocsSDK().logger
     print "SDK initialized with success..."
 
     m.scene = screen.CreateScene("MainScene")
@@ -19,7 +19,7 @@ sub Main()
     m.scene.observeField("backPressed", m.port)
 
     while true
-        msg = SkySDKWait(0)
+        msg = AmdocsSDKWait(0)
         if msg <> invalid
             msgType = type(msg)
             if msgType = "roSGScreenEvent"

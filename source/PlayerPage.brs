@@ -4,7 +4,7 @@ function PlayerPage() as object
         session: invalid
         playerController: invalid
         type: "PlayerPage"
-        logger: skySDK().logger
+        logger: amdocsSDK().logger
 
         '|----------------------------------------------|
         '|              Public Methods                  |
@@ -25,11 +25,11 @@ function PlayerPage() as object
 
             commonPlayer = m.view.findNode("commonPlayer")
             controls = m.view.findNode("buttonsBar")
-            skySDK().onMessage("processMessage", m)
-            controls.ObserveFieldScoped("control", skySDK().port)
-            controls.ObserveFieldScoped("seek", skySDK().port)
-            controls.ObserveFieldScoped("toggleSessionConfig", skySDK().port)
-            controls.ObserveFieldScoped("toggleSessionInfo", skySDK().port)
+            amdocsSDK().onMessage("processMessage", m)
+            controls.ObserveFieldScoped("control", amdocsSDK().port)
+            controls.ObserveFieldScoped("seek", amdocsSDK().port)
+            controls.ObserveFieldScoped("toggleSessionConfig", amdocsSDK().port)
+            controls.ObserveFieldScoped("toggleSessionInfo", amdocsSDK().port)
 
             m.playerController = m._getPlayerController()
             m.playerController.onSessionCreated("_handleSessionCreated", m)
@@ -50,7 +50,7 @@ function PlayerPage() as object
         end function
 
         _registerPlayerPageObservers: function()
-            m.view.ObserveField("setControl", skySDK().port)
+            m.view.ObserveField("setControl", amdocsSDK().port)
         end function
 
         _unregisterPlayerPageObservers: function()
@@ -59,7 +59,7 @@ function PlayerPage() as object
 
         processMessage: function(_event)
             if invalid = _event
-                m.logger.error(SkySDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerPage.processMessage", SkySDK_UtilsStringUtils().toString(_event)))
+                m.logger.error(AmdocsSDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerPage.processMessage", AmdocsSDK_UtilsStringUtils().toString(_event)))
             else
                 if _event.field = "control"
                     if Commands().pause = _event.data
@@ -89,13 +89,13 @@ function PlayerPage() as object
                         "* Press the rewind button to rewind the playback. The video will pause while this happens. Press again to continue playing.              "
                         "*****************************************************************************************************************************************",
                     ]
-                    m.logger.fatal(SkySDK_UtilsStringUtils().join(lines, Chr(10)))
+                    m.logger.fatal(AmdocsSDK_UtilsStringUtils().join(lines, Chr(10)))
                 end if
             end if
         end function
 
         _getPlayerController: function() as object
-            return skySDK().getPlayerController()
+            return amdocsSDK().getPlayerController()
         end function
 
         '|----------------------------------------------|
