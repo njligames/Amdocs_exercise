@@ -51,11 +51,11 @@ function init() as void
 
 
     m.initialize = function(options = {} as object) as boolean
-        if AmdocsSDK_UtilsTypeUtils().isInt(options.logLevel)
+        if NJLICSDK_UtilsTypeUtils().isInt(options.logLevel)
             m.currentLogLevel = options.logLevel
         end if
 
-        if AmdocsSDK_UtilsTypeUtils().isString(options.name)
+        if NJLICSDK_UtilsTypeUtils().isString(options.name)
             m.name = options.name
         end if
 
@@ -64,7 +64,7 @@ function init() as void
         end if
 
         m.disableLoggingToScreen = true
-        if (not m.disableLogging) and AmdocsSDK_UtilsTypeUtils().isBoolean(options?.disableLoggingToScreen)
+        if (not m.disableLogging) and NJLICSDK_UtilsTypeUtils().isBoolean(options?.disableLoggingToScreen)
             m.disableLoggingToScreen = options?.disableLoggingToScreen
         end if
 
@@ -81,35 +81,35 @@ function init() as void
     m.trace = function(message as dynamic, level as integer) as void
         if (not m.disableLogging) and (level <= m.currentLogLevel)
             m.datetime.mark()
-            m._print(AmdocsSDK_UtilsStringUtils().substitute("{0} [AmdocsSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
+            m._print(NJLICSDK_UtilsStringUtils().substitute("{0} [NJLICSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
         end if
     end function
 
     m.debug = function(message as dynamic, level as integer) as void
         if (not m.disableLogging) and (level <= m.currentLogLevel)
             m.datetime.mark()
-            m._print(AmdocsSDK_UtilsStringUtils().substitute("{0} [AmdocsSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
+            m._print(NJLICSDK_UtilsStringUtils().substitute("{0} [NJLICSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
         end if
     end function
 
     m.info = function(message as dynamic, level as integer) as void
         if (not m.disableLogging) and (level <= m.currentLogLevel)
             m.datetime.mark()
-            m._print(AmdocsSDK_UtilsStringUtils().substitute("{0} [AmdocsSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
+            m._print(NJLICSDK_UtilsStringUtils().substitute("{0} [NJLICSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
         end if
     end function
 
     m.warn = function(message as dynamic, level as integer) as void
         if (not m.disableLogging) and (level <= m.currentLogLevel)
             m.datetime.mark()
-            m._print(AmdocsSDK_UtilsStringUtils().substitute("{0} ** WARNING ** [AmdocsSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
+            m._print(NJLICSDK_UtilsStringUtils().substitute("{0} ** WARNING ** [NJLICSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
         end if
     end function
 
     m.error = function(message as dynamic, level as integer) as void
         if (not m.disableLogging) and (level <= m.currentLogLevel)
             m.datetime.mark()
-            m._print(AmdocsSDK_UtilsStringUtils().substitute("{0} ** ERROR ** [AmdocsSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
+            m._print(NJLICSDK_UtilsStringUtils().substitute("{0} ** ERROR ** [NJLICSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
         end if
     end function
 
@@ -117,7 +117,7 @@ function init() as void
         if (not m.disableLogging) and (level <= m.currentLogLevel)
             m.datetime.mark()
             m._print("")
-            m._print(AmdocsSDK_UtilsStringUtils().substitute("{0} ** FATAL ** [AmdocsSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
+            m._print(NJLICSDK_UtilsStringUtils().substitute("{0} ** FATAL ** [NJLICSDK - {1}]: {2}", m.datetime.toISOString(), m.name, message))
             m._print("")
         end if
     end function

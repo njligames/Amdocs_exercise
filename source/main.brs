@@ -7,10 +7,10 @@ sub Main()
 
     screen.setMessagePort(m.port)
 
-    amdocsSDK().setMessagePort(m.port)
+    njlicSDK().setMessagePort(m.port)
     params = readConfigFile("pkg:/source/config/config.json")
-    amdocsSDK().initLogger(createLoggerOptionsFromParams(params))
-    m.logger = amdocsSDK().logger
+    njlicSDK().initLogger(createLoggerOptionsFromParams(params))
+    m.logger = njlicSDK().logger
     print "SDK initialized with success..."
 
     m.scene = screen.CreateScene("MainScene")
@@ -19,7 +19,7 @@ sub Main()
     m.scene.observeField("backPressed", m.port)
 
     while true
-        msg = AmdocsSDKWait(0)
+        msg = NJLICSDKWait(0)
         if msg <> invalid
             msgType = type(msg)
             if msgType = "roSGScreenEvent"

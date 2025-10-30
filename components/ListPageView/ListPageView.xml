@@ -5,8 +5,9 @@
     <script type="text/brightscript" uri="pkg:/source/Assets.brs" />
 
     <interface>
-        <field id="items" type="array" />
         <field id="selectedAsset" type="assocArray" />
+
+        <field id="content" type="node" alias="RowList.content" />
     </interface>
 
     <children>
@@ -16,11 +17,23 @@
             <Label id="selectedLabel" font="font:SmallBoldSystemFont" />
             <Label id="selectedText" width="600" font="font:SmallestSystemFont" wrap="true" />
         </LayoutGroup>
-        <Poster id="assetImage" loadDisplayMode="limitSize" loadWidth="600" loadHeight="290" height="290" translation="[640, 40]" />
+        <Poster id="assetImage" loadDisplayMode="limitSize" loadWidth="600" loadHeight="290" height="290" translation="[600, 40]" />
         <LayoutGroup translation="[1113, 10]" itemSpacings="[25]" layoutDirection="horiz">
             <Poster uri="pkg:/images/amdocs-logo-transparent.png" />
         </LayoutGroup>
         <Rectangle color="#000000" width="1280" height="420" translation="[0, 330]" />
-        <RowList id="rowList" translation="[30, 300]"/>
+
+        <RowList
+            itemComponentName="CustomRowListItem"
+            id="rowList"
+            translation="[30, 360]"
+            numRows="3"
+            rowitemSize="[[215,120]]"
+            rowItemSpacing="[[21,0]]"
+            itemSize="[1122,227]"
+            rowLabelOffset="[[0,25]]"
+            focusXOffset="[0]"
+            showRowLabel="[true]"
+        />
     </children>
 </component>

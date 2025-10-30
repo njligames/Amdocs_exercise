@@ -1,11 +1,11 @@
-function AmdocsSDK_Session_SessionController(sessionItem as object) as object
+function NJLICSDK_Session_SessionController(sessionItem as object) as object
     this = {
         sessionItem: sessionItem
         currentPlayerItem: invalid
 
-        stateObservable: AmdocsSDK_Utils_Observable()
-        seekObservable: AmdocsSDK_Utils_Observable()
-        positionObservable: AmdocsSDK_Utils_Observable()
+        stateObservable: NJLICSDK_Utils_Observable()
+        seekObservable: NJLICSDK_Utils_Observable()
+        positionObservable: NJLICSDK_Utils_Observable()
 
         '|----------------------------------------------|
         '|              Public Methods                  |
@@ -13,8 +13,8 @@ function AmdocsSDK_Session_SessionController(sessionItem as object) as object
 
         start: function(commonPlayer as object) as void
             m._setState("Loading")
-            m.currentPlayerItem = AmdocsSDK_Player_PlayerEngineItem(m.sessionItem, commonPlayer)
-            amdocsSDK().onMessage("processMessage", m)
+            m.currentPlayerItem = NJLICSDK_Player_PlayerEngineItem(m.sessionItem, commonPlayer)
+            njlicSDK().onMessage("processMessage", m)
             m.currentPlayerItem.onStateChanged("_handlePlayerStateChange", m)
             m.currentPlayerItem.onSeekChanged("_handlePlayerSeekChange", m)
             m.currentPlayerItem.onPositionChanged("_handlePlayerPositionChange", m)
@@ -41,7 +41,7 @@ function AmdocsSDK_Session_SessionController(sessionItem as object) as object
         end function
 
         destroy: function() as void
-            amdocsSDK().removeEventListeners(m)
+            njlicSDK().removeEventListeners(m)
             m.stateObservable.unRegisterAllObserver()
             m.seekObservable.unRegisterAllObserver()
             m.positionObservable.unRegisterAllObserver()

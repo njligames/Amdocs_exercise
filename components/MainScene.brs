@@ -1,7 +1,7 @@
 function Init()
 end function
 
-function onKeyEvent(key as String, press as Boolean) as Boolean
+function onKeyEvent(key as string, press as boolean) as boolean
     if press then return true
     if key = "back"
         m.top.backPressed = true

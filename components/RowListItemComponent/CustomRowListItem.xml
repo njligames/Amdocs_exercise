@@ -1,0 +1,29 @@
+<component name = "CustomRowListItem" extends = "Group" >
+ 
+  <interface > 
+    <field id = "itemContent" type = "node" onChange = "showcontent"/>
+    <field id = "focusPercent" type = "float" onChange = "showfocus"/> 
+    <field id = "rowFocusPercent" type = "float" onChange = "showrowfocus"/>
+  </interface>
+  <script type="text/brightscript" uri="CustomRowListItem.brs" />
+ 
+  <children >
+
+    <Poster 
+      id = "itemPoster" 
+      translation = "[ -9, -9 ]"  
+      width = "213" 
+      height = "120" 
+    >
+    </Poster>
+
+    <Label
+      id="itemLabel"
+      width="216"
+      translation="[0,135]"
+      wrap = "true"
+      font = "font:TinySystemFont" 
+    />
+
+  </children>
+</component>

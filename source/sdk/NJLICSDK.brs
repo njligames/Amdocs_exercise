@@ -1,15 +1,15 @@
-function AmdocsSDKWait(timeout as integer) as dynamic
-    return amdocsSDK()._wait(timeout)
+function NJLICSDKWait(timeout as integer) as dynamic
+    return njlicSDK()._wait(timeout)
 end function
 
-function amdocsSDK() as object
+function njlicSDK() as object
 
     globalAA = getGLobalAA()
-    if globalAA.AmdocsSDKInstance <> invalid then return globalAA.AmdocsSDKInstance
+    if globalAA.NJLICSDKInstance <> invalid then return globalAA.NJLICSDKInstance
 
-    AmdocsSDKInstance = {
+    NJLICSDKInstance = {
         port: invalid
-        messageObservable: AmdocsSDK_Utils_Observable()
+        messageObservable: NJLICSDK_Utils_Observable()
         initialisePromise: invalid
         logger: invalid
 
@@ -18,7 +18,7 @@ function amdocsSDK() as object
         '|----------------------------------------------|
 
         getPlayerController: function() as object
-            return AmdocsSDK_Player_PlayerController()
+            return NJLICSDK_Player_PlayerController()
         end function
 
         onMessage: function(callBack as string, callbackOwner as object) as void
@@ -43,7 +43,7 @@ function amdocsSDK() as object
 
         _processMessage: function(msg as dynamic) as void
             if msg = invalid
-                m.logger.error(AmdocsSDK_UtilsStringUtils().substitute("{0} message = {1}", "AmdocsSDK._processMessage", AmdocsSDK_UtilsStringUtils().toString(msg)))
+                m.logger.error(NJLICSDK_UtilsStringUtils().substitute("{0} message = {1}", "njlicSDK._processMessage", NJLICSDK_UtilsStringUtils().toString(msg)))
                 return
             end if
             _event = { field: msg.getField(), data: msg.getData() }
@@ -61,6 +61,6 @@ function amdocsSDK() as object
         end function
     }
 
-    globalAA.AmdocsSDKInstance = AmdocsSDKInstance
-    return AmdocsSDKInstance
+    globalAA.NJLICSDKInstance = NJLICSDKInstance
+    return NJLICSDKInstance
 end function
