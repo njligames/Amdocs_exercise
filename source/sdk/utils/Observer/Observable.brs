@@ -1,14 +1,14 @@
-function AmdocsSDK_Utils_Observable() as Object
+function NJLICSDK_Utils_Observable() as Object
     return {
 
         observers: []
-        arrayUtils: AmdocsSDK_Utils_ArrayUtils()
+        arrayUtils: NJLICSDK_Utils_ArrayUtils()
         locked: false
 
         registerObserver: function(callBack as Object, callBackOwner as Object) as Void
             if m.locked = false
                 m._genObserverId(callBackOwner)
-                m.observers.Push(AmdocsSDK_Utils_Observer(callBack, callBackOwner))
+                m.observers.Push(NJLICSDK_Utils_Observer(callBack, callBackOwner))
             end if
         end function
 

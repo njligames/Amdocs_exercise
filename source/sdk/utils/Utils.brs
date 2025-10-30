@@ -1,4 +1,4 @@
-function AmdocsSDK_Utils_Utils() as object
+function NJLICSDK_Utils_Utils() as object
     return {
         callFunc: function(Func as dynamic, args = [] as object) as dynamic
             if GetInterface(Func, "ifFunction") <> invalid
@@ -28,7 +28,7 @@ function AmdocsSDK_Utils_Utils() as object
     }
 end function
 
-function AmdocsSDK_Utils_ArrayUtils() as object
+function NJLICSDK_Utils_ArrayUtils() as object
     return {
 
         ' Searches for an element that matches the conditions defined by the equality comparer, and returns the first occurrence.
@@ -52,7 +52,7 @@ function AmdocsSDK_Utils_ArrayUtils() as object
         ' @param array { Object }, array to search in
         ' @return { Boolean }, True if element is present, false otherwise
         contains: function(element as dynamic, array as object) as boolean
-            doesExist = AmdocsSDK_Utils_ArrayUtils().find(element, array, function(elementA, elementB)
+            doesExist = NJLICSDK_Utils_ArrayUtils().find(element, array, function(elementA, elementB)
                 return elementA <> invalid and elementB <> invalid and elementA = elementB
             end function)
             return doesExist <> invalid
@@ -147,11 +147,11 @@ function AmdocsSDK_Utils_ArrayUtils() as object
 
         _execFunc: function(Func as dynamic, context as dynamic, args = [] as object) as dynamic
             if GetInterface(Func, "ifString") <> invalid and GetInterface(context, "ifAssociativeArray") <> invalid
-                return AmdocsSDK_Utils_Utils().callScopedFunc(Func, args, context)
+                return NJLICSDK_Utils_Utils().callScopedFunc(Func, args, context)
             else
                 funcArgs = [context]
                 if args <> invalid then funcArgs.Append(args)
-                return AmdocsSDK_Utils_Utils().callFunc(Func, funcArgs)
+                return NJLICSDK_Utils_Utils().callFunc(Func, funcArgs)
             end if
         end function
 
@@ -168,7 +168,7 @@ function AmdocsSDK_Utils_ArrayUtils() as object
     }
 end function
 
-function AmdocsSDK_Utils_ObjectUtils() as object
+function NJLICSDK_Utils_ObjectUtils() as object
     return {
         ' copies the values and properties from one or more source objects to a target object
         ' @param target { Dynamic }, target to copy the source properties to
@@ -230,16 +230,16 @@ function AmdocsSDK_Utils_ObjectUtils() as object
     }
 end function
 
-function AmdocsSDK_Utils_DisplayUtils() as object
+function NJLICSDK_Utils_DisplayUtils() as object
     return {
         getDefaultPlayerDimensions: function() as dynamic
-            deviceInfo = amdocsSDK().getDeviceInfo()
+            deviceInfo = njlicSDK().getDeviceInfo()
             return { width: deviceInfo.uiResolution.width, height: deviceInfo.uiResolution.height, x: 0, y: 0 }
         end function
     }
 end function
 
-function AmdocsSDK_Utils_URLUtils() as object
+function NJLICSDK_Utils_URLUtils() as object
     return {
         parseURLQueryString: function(url as string) as object
             result = {}
@@ -257,7 +257,7 @@ function AmdocsSDK_Utils_URLUtils() as object
     }
 end function
 
-function AmdocsSDK_UtilsTypeUtils() as object
+function NJLICSDK_UtilsTypeUtils() as object
     return {
         isString: function(obj as dynamic) as boolean : return m.isType(obj, "ifString") : end function,
         isBool: function(obj as dynamic) as boolean : return m.isType(obj, "ifBoolean") : end function,
@@ -306,7 +306,7 @@ function AmdocsSDK_UtilsTypeUtils() as object
     }
 end function
 
-function AmdocsSDK_UtilsStringUtils() as object
+function NJLICSDK_UtilsStringUtils() as object
     return {
         ' Joins an array of different elements to a single string. Calls toString on each
         ' element of the array so object types will be printed by default: "Lorem Ipsum roRegex"
@@ -314,7 +314,7 @@ function AmdocsSDK_UtilsStringUtils() as object
         ' @param delimeter the delimeter to append to each element
         ' @returns a String of all elements on the array
         join: function(arr as dynamic, delimeter = "" as string) as string
-            if not AmdocsSDK_UtilsTypeUtils().isArray(arr)
+            if not NJLICSDK_UtilsTypeUtils().isArray(arr)
                 return ""
             end if
 
@@ -378,7 +378,7 @@ function AmdocsSDK_UtilsStringUtils() as object
         end function,
 
         arrayToString: function(arr as object) as string
-            if not AmdocsSDK_UtilsTypeUtils().isArray(arr) then
+            if not NJLICSDK_UtilsTypeUtils().isArray(arr) then
                 return m.toString(arr)
             end if
 
@@ -388,7 +388,7 @@ function AmdocsSDK_UtilsStringUtils() as object
                 ' This issue was introduced in firmware 9.0.0
                 if type(el) = "<uninitialized>" then el = invalid
 
-                if AmdocsSDK_UtilsTypeUtils().isArray(el) then
+                if NJLICSDK_UtilsTypeUtils().isArray(el) then
                     res.push(m.arrayToString(el))
                 else
                     res.push(m.toString(el))
@@ -399,20 +399,20 @@ function AmdocsSDK_UtilsStringUtils() as object
         end function,
 
         objectToString: function(obj as object) as string
-            if not AmdocsSDK_UtilsTypeUtils().isObject(obj) then
+            if not NJLICSDK_UtilsTypeUtils().isObject(obj) then
                 return m.toString(obj)
             end if
 
             res = []
 
-            if AmdocsSDK_UtilsTypeUtils().isType(obj, "ifEnum")
+            if NJLICSDK_UtilsTypeUtils().isType(obj, "ifEnum")
                 for each k in obj
                     el = obj[k]
 
                     str = k + ":"
-                    if AmdocsSDK_UtilsTypeUtils().isObject(el) then
+                    if NJLICSDK_UtilsTypeUtils().isObject(el) then
                         str = str + m.objectToString(el)
-                    else if AmdocsSDK_UtilsTypeUtils().isArray(el) then
+                    else if NJLICSDK_UtilsTypeUtils().isArray(el) then
                         str = str + m.arrayToString(el)
                     else
                         str = str + m.toString(el)
@@ -431,19 +431,19 @@ function AmdocsSDK_UtilsStringUtils() as object
         ' @param {Dynamic} the value to convert to a string.
         ' @returns {String} the converted string or the type if we can't convert
         toString: function(any as dynamic) as string
-            if AmdocsSDK_UtilsTypeUtils().isUnitialized(any) then return "Uninitilized"
+            if NJLICSDK_UtilsTypeUtils().isUnitialized(any) then return "Uninitilized"
             if any = invalid then return "Invalid"
-            if AmdocsSDK_UtilsTypeUtils().isString(any) then return any
-            if AmdocsSDK_UtilsTypeUtils().isInt(any) then return m.intToString(any)
-            if AmdocsSDK_UtilsTypeUtils().isLongInt(any) then return m.longIntToString(any)
-            if AmdocsSDK_UtilsTypeUtils().isBool(any)
+            if NJLICSDK_UtilsTypeUtils().isString(any) then return any
+            if NJLICSDK_UtilsTypeUtils().isInt(any) then return m.intToString(any)
+            if NJLICSDK_UtilsTypeUtils().isLongInt(any) then return m.longIntToString(any)
+            if NJLICSDK_UtilsTypeUtils().isBool(any)
                 if any then return "true"
                 return "false"
             end if
-            if AmdocsSDK_UtilsTypeUtils().isFloat(any) then return m.floatToString(any)
-            if AmdocsSDK_UtilsTypeUtils().isDouble(any) then return m.doubleToString(any)
-            if AmdocsSDK_UtilsTypeUtils().isArray(any) then return m.arrayToString(any)
-            if AmdocsSDK_UtilsTypeUtils().isObject(any) then return m.objectToString(any)
+            if NJLICSDK_UtilsTypeUtils().isFloat(any) then return m.floatToString(any)
+            if NJLICSDK_UtilsTypeUtils().isDouble(any) then return m.doubleToString(any)
+            if NJLICSDK_UtilsTypeUtils().isArray(any) then return m.arrayToString(any)
+            if NJLICSDK_UtilsTypeUtils().isObject(any) then return m.objectToString(any)
             return type(any)
         end function,
 
@@ -478,7 +478,7 @@ function initializeObject(objectName as string, params = {} as object) as dynami
 
     'Instantiate object
     objectInstance = CreateObject("roSGNode", objectName)
-    isObjectInstantiated = AmdocsSDK_UtilsTypeUtils().isSgNodeSubtype(objectInstance, objectName)
+    isObjectInstantiated = NJLICSDK_UtilsTypeUtils().isSgNodeSubtype(objectInstance, objectName)
 
     if isObjectInstantiated
         isObjectInitialized = (objectInstance.callFunc("initialize", params) = true)

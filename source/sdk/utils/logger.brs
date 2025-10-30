@@ -106,7 +106,7 @@ function readConfigFile(filePath as string) as object
     end if
     return {
         "loggerOptions": {
-            disableLogging: AmdocsSDK_UtilsStringUtils().stringToBoolean(config?.disableLogging)
+            disableLogging: NJLICSDK_UtilsStringUtils().stringToBoolean(config?.disableLogging)
             logLevel: config?.logLevel
             name: config?.name
             disableLoggingToScreen: true
@@ -117,26 +117,26 @@ end function
 function createLoggerOptionsFromParams(params = {} as object) as object
     loggerOptions = params?.loggerOptions
 
-    if not AmdocsSDK_UtilsTypeUtils().isObject(loggerOptions)
+    if not NJLICSDK_UtilsTypeUtils().isObject(loggerOptions)
         loggerOptions = {}
 
         _logLevel = params?.logLevel
-        if AmdocsSDK_UtilsTypeUtils().isInt(_logLevel)
+        if NJLICSDK_UtilsTypeUtils().isInt(_logLevel)
             loggerOptions.logLevel = _logLevel
         end if
 
         disableLogging = params?.disableLogging
-        if AmdocsSDK_UtilsTypeUtils().isBoolean(disableLogging)
+        if NJLICSDK_UtilsTypeUtils().isBoolean(disableLogging)
             loggerOptions.disableLogging = disableLogging
         end if
 
         disableLoggingToScreen = params?.disableLoggingToScreen
-        if AmdocsSDK_UtilsTypeUtils().isBoolean(disableLoggingToScreen)
+        if NJLICSDK_UtilsTypeUtils().isBoolean(disableLoggingToScreen)
             loggerOptions.disableLoggingToScreen = disableLoggingToScreen
         end if
     else
         _logLevel = loggerOptions.logLevel
-        if AmdocsSDK_UtilsTypeUtils().isInt(_logLevel)
+        if NJLICSDK_UtilsTypeUtils().isInt(_logLevel)
             if _logLevel < LogLevel().FATAL
                 _logLevel = LogLevel().FATAL
             end if
@@ -149,14 +149,14 @@ function createLoggerOptionsFromParams(params = {} as object) as object
         end if
 
         disableLogging = loggerOptions.disableLogging
-        if AmdocsSDK_UtilsTypeUtils().isBoolean(disableLogging)
+        if NJLICSDK_UtilsTypeUtils().isBoolean(disableLogging)
             loggerOptions.disableLogging = disableLogging
         else
             loggerOptions.disableLogging = true
         end if
 
         disableLoggingToScreen = loggerOptions.disableLoggingToScreen
-        if AmdocsSDK_UtilsTypeUtils().isBoolean(disableLoggingToScreen)
+        if NJLICSDK_UtilsTypeUtils().isBoolean(disableLoggingToScreen)
             loggerOptions.disableLoggingToScreen = disableLoggingToScreen
         else
             loggerOptions.disableLogging = false

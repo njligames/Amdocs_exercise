@@ -1,18 +1,18 @@
-function AmdocsSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as object) as object
+function NJLICSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer as object) as object
     this = {
         sessionItem: sessionItem
         commonPlayer: commonPlayer
         video: invalid
-        logger: amdocsSDK().logger
+        logger: njlicSDK().logger
 
         OBSERVABLE_FIELDS: {
             State: "state",
             Position: "position"
         }
 
-        stateObservable: AmdocsSDK_Utils_Observable()
-        seekObservable: AmdocsSDK_Utils_Observable()
-        positionObservable: AmdocsSDK_Utils_Observable()
+        stateObservable: NJLICSDK_Utils_Observable()
+        seekObservable: NJLICSDK_Utils_Observable()
+        positionObservable: NJLICSDK_Utils_Observable()
 
         '|----------------------------------------------|
         '|       Main Tread message                     |
@@ -22,7 +22,7 @@ function AmdocsSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer a
             if _event <> invalid
 
                 if _event.field = "state"
-                    m.logger.trace(AmdocsSDK_UtilsStringUtils().substitute("PlayerEngineItem.processMessage field={0} data={1} title={2}", _event.field, _event.data, m.sessionItem.metadata.assetTitle))
+                    m.logger.trace(NJLICSDK_UtilsStringUtils().substitute("PlayerEngineItem.processMessage field={0} data={1} title={2}", _event.field, _event.data, m.sessionItem.metadata.assetTitle))
                     m.stateObservable.notifyObservers(_event.data)
                 end if
 
@@ -34,7 +34,7 @@ function AmdocsSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer a
                     m.positionObservable.notifyObservers(_event.data)
                 end if
             else
-                m.logger.error(AmdocsSDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerEngineItem.processMessage", AmdocsSDK_UtilsStringUtils().toString(_event)))
+                m.logger.error(NJLICSDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerEngineItem.processMessage", NJLICSDK_UtilsStringUtils().toString(_event)))
             end if
         end function
 
@@ -81,7 +81,7 @@ function AmdocsSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer a
 
         destroy: function() as void
             m.stop()
-            amdocsSDK().removeEventListeners(m)
+            njlicSDK().removeEventListeners(m)
             m.video.unObserveFieldScoped(m.OBSERVABLE_FIELDS.State)
             m.video.unObserveFieldScoped(m.OBSERVABLE_FIELDS.Position)
             m.stateObservable.unRegisterAllObserver()
@@ -115,8 +115,8 @@ function AmdocsSDK_Player_PlayerEngineItem(sessionItem as object, commonPlayer a
 
         _init: function() as void
             m.video = m._createVideoElement()
-            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.State, amdocsSDK().port)
-            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.Position, amdocsSDK().port)
+            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.State, njlicSDK().port)
+            m.video.observeFieldScoped(m.OBSERVABLE_FIELDS.Position, njlicSDK().port)
             m.commonPlayer.appendChild(m.video)
             m.play()
         end function

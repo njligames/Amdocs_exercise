@@ -4,7 +4,7 @@ function PlayerPage() as object
         session: invalid
         playerController: invalid
         type: "PlayerPage"
-        logger: amdocsSDK().logger
+        logger: njlicSDK().logger
 
         '|----------------------------------------------|
         '|              Public Methods                  |
@@ -25,11 +25,11 @@ function PlayerPage() as object
 
             commonPlayer = m.view.findNode("commonPlayer")
             controls = m.view.findNode("buttonsBar")
-            amdocsSDK().onMessage("processMessage", m)
-            controls.ObserveFieldScoped("control", amdocsSDK().port)
-            controls.ObserveFieldScoped("seek", amdocsSDK().port)
-            controls.ObserveFieldScoped("toggleSessionConfig", amdocsSDK().port)
-            controls.ObserveFieldScoped("toggleSessionInfo", amdocsSDK().port)
+            njlicSDK().onMessage("processMessage", m)
+            controls.ObserveFieldScoped("control", njlicSDK().port)
+            controls.ObserveFieldScoped("seek", njlicSDK().port)
+            controls.ObserveFieldScoped("toggleSessionConfig", njlicSDK().port)
+            controls.ObserveFieldScoped("toggleSessionInfo", njlicSDK().port)
 
             m.playerController = m._getPlayerController()
             m.playerController.onSessionCreated("_handleSessionCreated", m)
@@ -50,7 +50,7 @@ function PlayerPage() as object
         end function
 
         _registerPlayerPageObservers: function()
-            m.view.ObserveField("setControl", amdocsSDK().port)
+            m.view.ObserveField("setControl", njlicSDK().port)
         end function
 
         _unregisterPlayerPageObservers: function()
@@ -59,7 +59,7 @@ function PlayerPage() as object
 
         processMessage: function(_event)
             if invalid = _event
-                m.logger.error(AmdocsSDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerPage.processMessage", AmdocsSDK_UtilsStringUtils().toString(_event)))
+                m.logger.error(NJLICSDK_UtilsStringUtils().substitute("{0} message = {1}", "PlayerPage.processMessage", NJLICSDK_UtilsStringUtils().toString(_event)))
             else
                 if _event.field = "control"
                     if Commands().pause = _event.data
@@ -89,13 +89,13 @@ function PlayerPage() as object
                         "* Press the rewind button to rewind the playback. The video will pause while this happens. Press again to continue playing.              "
                         "*****************************************************************************************************************************************",
                     ]
-                    m.logger.fatal(AmdocsSDK_UtilsStringUtils().join(lines, Chr(10)))
+                    m.logger.fatal(NJLICSDK_UtilsStringUtils().join(lines, Chr(10)))
                 end if
             end if
         end function
 
         _getPlayerController: function() as object
-            return amdocsSDK().getPlayerController()
+            return njlicSDK().getPlayerController()
         end function
 
         '|----------------------------------------------|
